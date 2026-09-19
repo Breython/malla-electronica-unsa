@@ -154,7 +154,7 @@ export default function App() {
       }}>
         <div style={{ padding: '15px 30px', backgroundColor: 'rgba(127, 29, 29, 0.85)', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <h1 style={{ margin: 0, fontSize: '24px', textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>Plan de estudios 2025 Ingenieria electronica</h1>
+            <h1 style={{ margin: 0, fontSize: '24px', textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>Plan de estudios 2025 INGENIERÍA ELECTRÓNICA</h1>
           </div>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
