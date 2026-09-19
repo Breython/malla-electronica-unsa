@@ -11,13 +11,11 @@ export default function App() {
   const [focusedNodeId, setFocusedNodeId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Encontrar datos del curso seleccionado para el Panel Lateral
   const selectedCourse = useMemo(() => {
     if (!focusedNodeId) return null;
     return planDeEstudios.find(c => c.id === focusedNodeId);
   }, [focusedNodeId]);
 
-  // Encontrar qué cursos abre el curso seleccionado
   const unlockedCourses = useMemo(() => {
     if (!focusedNodeId) return [];
     return planDeEstudios.filter(c => c.prq.includes(focusedNodeId));
@@ -70,7 +68,6 @@ export default function App() {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
 
-  // Efecto principal: Maneja clics y búsquedas
   useEffect(() => {
     const getBlockedCourses = (startId) => {
       const blocked = new Set();
@@ -114,7 +111,6 @@ export default function App() {
         const isPrereq = prereqSet.has(n.id);
         const isSearched = term.length > 2 && (n.data.label.toLowerCase().includes(term) || (n.data.lab && n.data.lab.label.toLowerCase().includes(term)));
         
-        // Oscurecer si hay un nodo enfocado (y no eres parte de su ruta) o si hay una búsqueda (y no coincides)
         const isDimmed = (focusedNodeId && !isFocused && !isBlocked && !isPrereq) || (term.length > 2 && !isSearched && !focusedNodeId);
         
         return { ...n, data: { ...n.data, isFocused, isBlocked, isPrereq, isDimmed, isSearched } };
@@ -139,7 +135,7 @@ export default function App() {
   const onNodeClick = useCallback((event, node) => {
     if (!node.id.startsWith('sem-')) {
       setFocusedNodeId(node.id);
-      setSearchTerm(''); // Limpiar búsqueda al hacer clic
+      setSearchTerm(''); 
     }
   }, []);
 
@@ -148,7 +144,7 @@ export default function App() {
   return (
     <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }}>
       
-      {/* HEADER CON IMAGEN DE FONDO INSTITUCIONAL */}
+      {/* HEADER */}
       <header style={{ 
         backgroundImage: "url('/Ing.-Electronica-2021-v-1536x643.jpg')", 
         backgroundSize: 'cover', 
@@ -156,14 +152,11 @@ export default function App() {
         boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
         zIndex: 10
       }}>
-        {/* Capa Roja Semitransparente */}
         <div style={{ padding: '15px 30px', backgroundColor: 'rgba(127, 29, 29, 0.85)', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <h1 style={{ margin: 0, fontSize: '24px', textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>Malla Curricular Interactiva</h1>
-            <p style={{ margin: '4px 0 0 0', fontSize: '14px', color: '#fca5a5', fontWeight: 'bold' }}>Programa de Estudios de Ingeniería Electrónica - UNSA</p>
+            <h1 style={{ margin: 0, fontSize: '24px', textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>Plan de estudios 2025 Ingenieria electronica</h1>
           </div>
           
-          {/* Barra de Búsqueda */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <input 
               type="text" 
@@ -176,7 +169,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* ÁREA PRINCIPAL: React Flow + Panel Lateral */}
+      {/* ÁREA PRINCIPAL */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         
         {/* Contenedor del Grafo */}
@@ -192,7 +185,7 @@ export default function App() {
           </ReactFlow>
         </div>
 
-        {/* PANEL LATERAL (Aparece al hacer clic en un curso) */}
+        {/* PANEL LATERAL */}
         {selectedCourse && (
           <aside style={{ 
             width: '320px', backgroundColor: 'white', borderLeft: '1px solid #e2e8f0',
@@ -207,7 +200,6 @@ export default function App() {
             </div>
 
             <div style={{ padding: '20px', flex: 1, overflowY: 'auto' }}>
-              {/* Sección Laboratorio */}
               {selectedCourse.lab && (
                 <div style={{ marginBottom: '20px', backgroundColor: '#f1f5f9', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #94a3b8' }}>
                   <h3 style={{ margin: '0 0 5px 0', fontSize: '13px', color: '#475569' }}>Incluye Laboratorio:</h3>
@@ -215,7 +207,6 @@ export default function App() {
                 </div>
               )}
 
-              {/* Sección Requisitos */}
               <div style={{ marginBottom: '20px' }}>
                 <h3 style={{ fontSize: '14px', color: '#3b82f6', borderBottom: '2px solid #eff6ff', paddingBottom: '5px' }}>Necesitas aprobar primero:</h3>
                 {selectedCourse.prq.length === 0 ? (
@@ -230,7 +221,6 @@ export default function App() {
                 )}
               </div>
 
-              {/* Sección Desbloqueos */}
               <div>
                 <h3 style={{ fontSize: '14px', color: '#ef4444', borderBottom: '2px solid #fee2e2', paddingBottom: '5px' }}>Abre los siguientes cursos:</h3>
                 {unlockedCourses.length === 0 ? (
@@ -244,20 +234,13 @@ export default function App() {
                 )}
               </div>
             </div>
-
-            {/* Espacio reservado para los comentarios (Siguiente fase) */}
-            <div style={{ padding: '15px', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0', textAlign: 'center' }}>
-              <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8', fontStyle: 'italic' }}>
-                * Sección de reseñas y comentarios de docentes en construcción... *
-              </p>
-            </div>
           </aside>
         )}
       </div>
 
       {/* FOOTER */}
       <footer style={{ backgroundColor: '#1e293b', color: '#94a3b8', textAlign: 'center', padding: '8px', fontSize: '12px' }}>
-        Desarrollado para la comunidad estudiantil de Ingeniería Electrónica - Universidad Nacional de San Agustín de Arequipa
+        Desarrollado por el Centro de estudiantes de Ingenieria Electronica 2026 - Universidad Nacional de san Agustin de Arequipa
       </footer>
     </div>
   );
