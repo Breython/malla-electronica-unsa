@@ -29,7 +29,7 @@ export const planDeEstudios = [
 
   // --- SEGUNDO AÑO - Semestre 4 ---
   { id: "2502222", label: "Ecología y Conservación Amb.", sem: 4, prq: [] },
-  { id: "2502223", label: "Matemática Aplicada a la Ing.", sem: 4, prq: ["2502119"] },
+  { id: "2502223", label: "Matemática Aplicada a la Ing.", sem: 4, prq: ["2502119", "2502118"] },
   { id: "2502224", label: "Física IV (Ondas y Ópticas)", lab: { id: "2502280", label: "Lab. Física IV" }, sem: 4, prq: ["2502120"] },
   { id: "2502225", label: "Circuitos Eléctricos II", lab: { id: "2502281", label: "Lab. Circuitos Eléctricos II" }, sem: 4, prq: ["2502121"] },
   { id: "2502226", label: "Electrónica Digital", lab: { id: "2502287", label: "Lab. Electrónica Digital" }, sem: 4, prq: ["2502121", "2502115"] },
@@ -81,12 +81,12 @@ export const planDeEstudios = [
   { id: "2505162", label: "Proc. Digital de Imágenes", lab: { id: "2505169", label: "Lab. Proc. Digital Imágenes" }, sem: 9, prq: ["2504254"] },
   { id: "2505163", label: "Comunicaciones Inalámbricas (E)", lab: { id: "2505170", label: "Lab. Com. Inalámbricas" }, sem: 9, prq: ["2504257"] },
   { id: "2505164", label: "Tec. Ingeniería Aeronáutica (E)", lab: { id: "2505171", label: "Lab. Tec. Ing. Aeronáutica" }, sem: 9, prq: ["2504251"] },
-  { id: "2505165", label: "Redes de Telecomunicaciones", lab: { id: "2505172", label: "Lab. Redes Telecomunicaciones" }, sem: 9, prq: ["2504257"] },
+  { id: "2505165", label: "Redes de Telecomunicaciones", lab: { id: "2505172", label: "Lab. Redes Telecomunicaciones" }, sem: 9, prq: ["2504257", "2504251"] },
 
   // --- QUINTO AÑO - Semestre 10 ---
   { id: "2505266", label: "Comunicaciones Ópticas", sem: 10, prq: ["2505165"] },
   { id: "2505267", label: "Trabajo de Investigación", sem: 10, prq: ["2505158"] },
-  { id: "2505268", label: "Prácticas Pre-Profesionales", sem: 10, prq: [] },
+  { id: "2505268", label: "Prácticas Pre-Profesionales", sem: 10, prq: ["2505158"] },
   { id: "2505269", label: "Inst. Sist. Aire Acondicionado (E)", lab: { id: "2505274", label: "Lab. Inst. Aire Acondicionado" }, sem: 10, prq: ["2505161"] },
   { id: "2505270", label: "Ingeniería de Sonido y Acústica (E)", lab: { id: "2505275", label: "Lab. Ing. Sonido" }, sem: 10, prq: ["2505162"] },
   { id: "2505271", label: "Fund. Vehículos Eléctricos (E)", sem: 10, prq: ["2505161"] },
